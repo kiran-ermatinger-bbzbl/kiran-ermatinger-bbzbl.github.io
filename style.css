@@ -1,0 +1,400 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html,
+body,
+main {
+}
+
+label {
+position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%); /* Schneidet alles bis zur Mitte weg */
+  white-space: nowrap;
+  border: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, sans-serif;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-areas:
+    "header"
+    "main";
+  background-color: #fcfcfd;
+  color: #111111;
+  margin: 0;
+  padding: 20px;
+  gap: 16px;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+body::-webkit-scrollbar,
+main::-webkit-scrollbar {
+  display: none;
+}
+
+main {
+  grid-area: main;
+  min-height: 0;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+header {
+  grid-area: header;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+}
+
+header * {
+  margin-left: 0;
+  margin-right: 0;
+}
+
+header h1 {
+  font-size: 30px;
+  margin: 0;
+  margin-right: 12px;
+}
+
+header button {
+  font-size: 15px;
+  padding: 10px 14px;
+  border-radius: 12px;
+  border: 0;
+  white-space: nowrap;
+  font-weight: 600;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease,
+    transform 0.2s ease;
+}
+
+header button:hover {
+  cursor: pointer;
+  transform: translateY(-1px);
+}
+
+header #login {
+  background-color: #f3f4f6;
+  color: #1f2937;
+}
+
+header #get_started {
+  background-color: black;
+  color: white;
+}
+
+header #search_bar {
+  flex: 1;
+  min-width: 180px;
+  height: 42px;
+  padding: 0 16px;
+  background-color: #f5f5f7;
+  border: 1px solid transparent;
+  border-radius: 14px;
+  font-size: 15px;
+  color: #1f2937;
+  outline: none;
+  transition:
+    border-color 0.2s ease,
+    background-color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+
+header #search_bar::placeholder {
+  color: #8b93a1;
+}
+
+header #search_bar:focus {
+  background-color: #ffffff;
+  border-color: #d7dce3;
+  box-shadow: 0 0 0 4px rgba(99, 115, 129, 0.08);
+}
+
+main,
+header {
+  margin: 0;
+}
+
+#gallery {
+  padding: 20px;
+  column-count: 2;
+  column-gap: 15px;
+  background-color: #f7f7f8;
+  border-radius: 30px;
+}
+
+#gallery article {
+  margin-top: 15px;
+  margin-bottom: 15px;
+  break-inside: avoid;
+}
+
+#gallery article img {
+  display: block;
+  width: 100%;
+  border-radius: 15px;
+}
+
+/* Info-Bereich unter jedem Bild */
+.profileSection {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 1em;
+  margin-right: 0.5em;
+  margin-left: 0.2em;
+}
+
+.profileSection p {
+  margin: 0;
+}
+
+img:hover,
+.username:hover,
+.download:hover,
+.like:hover {
+  cursor: pointer;
+}
+
+img {
+  filter: brightness(100%);
+  transition: cubic-bezier(0.85, 0, 0.15, 1) 0.1s;
+}
+
+img:hover {
+  filter: brightness(80%);
+}
+
+/* Linke Seite mit Titel und Username */
+.title {
+  font-size: 18px;
+}
+
+.username {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 4px;
+  font-size: 16px;
+  line-height: 1.1;
+}
+
+.username svg {
+  width: 1em;
+  height: 1em;
+  flex-shrink: 0;
+}
+
+/* Rechte Seite mit Aktions-Icons */
+.functions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-left: auto;
+}
+
+.functions svg {
+  width: 1.5em;
+  height: 1.5em;
+  flex-shrink: 0;
+}
+
+.like,
+.download {
+  display: flex;
+  align-items: center;
+}
+
+/* Display Groessen */
+/* Standard: kleines Handy im Hochformat, ca. 360px bis 599px */
+/* 1 Spalte */
+
+/* Grosses Handy oder kleines Tablet, ca. ab 600px */
+/* 2 Spalten */
+@media screen and (min-width: 600px) {
+  #gallery {
+    column-count: 2;
+  }
+}
+
+/* Tablet im Hochformat oder kleines Tablet quer, ca. ab 768px */
+/* 3 Spalten */
+@media screen and (min-width: 768px) {
+  #gallery {
+    column-count: 4;
+  }
+}
+
+/* Username auf kleineren Breiten ausblenden */
+@media screen and (max-width: 1024px) {
+  body {
+    height: 100vh;
+    min-height: 100vh;
+    overflow: hidden;
+    padding: 14px;
+    gap: 12px;
+    grid-template-areas:
+      "header"
+      "main"
+      "footer";
+    grid-template-rows: auto 1fr auto;
+  }
+
+  .username {
+    display: none;
+  }
+
+  #search_bar {
+    display: none;
+  }
+
+  .title {
+    font-weight: 100;
+    font-size: 15px;
+  }
+
+  header {
+    padding: 10px 12px;
+  }
+
+  header h1 {
+    margin-right: auto;
+  }
+
+  header button {
+    padding: 9px 12px;
+    font-size: 14px;
+  }
+
+  footer {
+    position: static;
+    z-index: auto;
+  }
+
+  #navigation_bar {
+    flex-direction: row;
+  }
+
+  main {
+    margin-bottom: 0;
+    overflow-y: auto;
+  }
+
+  #gallery {
+    padding-bottom: 20px;
+  }
+}
+
+/* Tablet querformat oder kleines Laptop-Fenster, ca. ab 1024px */
+/* 4 Spalten */
+@media screen and (min-width: 1024px) {
+
+  .username {
+    display: inline-flex;
+  }
+
+  #search_bar {
+    display: inline-flex;
+  }
+
+  #gallery {
+    column-count: 5;
+  }
+
+  #navigation_bar {
+    flex-direction: column;
+  }
+
+  body {
+    grid-template-rows: auto auto;
+    grid-template-columns: 1fr auto;
+    grid-template-areas:
+      "header header"
+      "main footer";
+  }
+
+  #navigation_bar {
+    flex-direction: column;
+    gap: 30px;
+
+  }
+
+  footer {
+    position: static;
+  }
+}
+
+/* Laptop oder normales Desktop-Fenster, ca. ab 1200px */
+/* 5 Spalten */
+@media screen and (min-width: 1200px) {
+  #gallery {
+    column-count: 6;
+  }
+}
+
+/* Grosser Desktop oder sehr breites Browserfenster, ca. ab 1536px */
+/* 6 Spalten */
+@media screen and (min-width: 1536px) {
+  #gallery {
+    column-count: 7;
+  }
+}
+
+@media screen and (min-width: 1800px) {
+  #gallery {
+    column-count: 8;
+  }
+}
+
+@media screen and (min-width: 2100px) {
+  #gallery {
+    column-count: 9;
+  }
+}
+
+@media screen and (min-width: 2400px) {
+  #gallery {
+    column-count: 10;
+  }
+}
+
+@media screen and (min-width: 2700px) {
+  #gallery {
+    column-count: 11;
+  }
+}
+
+footer {
+  grid-area: footer;
+  bottom: 14px;
+  left: 14px;
+  right: 14px;
+  background-color: white;
+}
+
+#navigation_bar {
+  padding: 10px 12px;
+  display: flex;
+  justify-content: space-around;
+}
+
+#navigation_bar i:hover {
+  cursor: pointer;
+}
+
+#navigation_bar i {
+  font-size: 25px;
+}
